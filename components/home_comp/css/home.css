@@ -1,9 +1,0 @@
-:root {
-  --home-element-main-color: #000611;
-}
-
-.home-element-main-container {
-  background-color: var(--home-element-main-color);
-  width: 100%;
-  height: 100vh;
-}
