@@ -1,0 +1,64 @@
+.player-info-container {
+    bottom: 100%;
+    position: absolute;
+    width: 100%;
+    transform: translateY(-14px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-info-inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transform: translateY(7px);
+  }
+  
+  .player-profile-img {
+    color: white;
+    padding-right: 8px;
+    font-size: 22px;
+  }
+  
+  .after-player-profile-content {
+  }
+  
+  .player-inner-state {
+    opacity: 0.8;
+    color: #00bd29;
+  }
+  
+  .player-inner-name {
+    transform: translateY(-5px);
+  }
+  
+  .bottom-player-info-main-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+  }
+  
+  .player-looby-rank {
+    color: white;
+    padding-right: 10px;
+    font-size: 25px;
+  }
+  
+  .player-skin-lobby {
+    font-size: 50px;
+    color: white;
+  }
+  
+  .player-lobby-level {
+    color: white;
+    margin-left: 3px;
+    position: absolute;
+    right: 0;
+    transform: translateX(10px)
+  }
+  
+  .player-lobby-level span {
+  }
+  

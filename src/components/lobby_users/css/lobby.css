@@ -1,0 +1,43 @@
+.lobby-users-main-container {
+  width: 700px;
+  height: 525px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 44px);
+}
+
+.player-lobby-stand {
+  width: 120px;
+  height: 3px;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  box-shadow: 0 0 5px 0 white;
+}
+
+.player1-stand {
+  bottom: 150px;
+  left: 0px;
+}
+
+.player2-stand {
+  bottom: 68px;
+  left: 136px;
+}
+
+.player3-stand {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.player4-stand {
+  bottom: 68px;
+  right: 136px;
+}
+
+.player5-stand {
+  bottom: 150px;
+  right: 0px;
+}
+

@@ -22,11 +22,13 @@
     transform: translate(-50%);
     font-weight: bold;
     user-select: none;
+    gap: 15px
   }
 
   .top-nav-home-options div{
     cursor: pointer;
-    padding: 0 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 
   .verants-container {
@@ -53,3 +55,7 @@
     transform: translateY(2px);
   }
   
+  .top-nav-active-option {
+    color: black;
+    background-color: white;
+  }

@@ -6,7 +6,7 @@ function TopNav() {
       
         <div className="top-home-nav-bar">
           <div className="top-nav-home-options">
-            <div className="top-nav-option">Home</div>
+            <div className="top-nav-option top-nav-active-option">Home</div>
             <div className="top-nav-option">Shop</div>
             <div style={{width: "50px"}} className="top-nav-option">V-Pass</div>
             <div className="top-nav-option">Skin</div>
