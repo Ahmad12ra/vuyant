@@ -1,0 +1,37 @@
+:root {
+  --verants-main-color: #b600ff;
+}
+
+.verants-icon-main-container {
+  position: relative;
+}
+
+.verants-icon,
+.verants-inner-color {
+  width: 0;
+  height: 0;
+}
+
+.verants-icon {
+  position: absolute;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 72px solid;
+  border-top-color: var(--verants-main-color);
+}
+
+.verants-inner-color {
+  position: absolute;
+  border-left: 30px solid transparent;
+  border-right: 31px solid transparent;
+  border-top: 53px solid;
+  transform: translate(10px, 5px);
+}
+
+.verants-icon-inner-v {
+  position: absolute;
+  color: var(--verants-main-color);
+  font-size: 36px;
+  font-weight: bold;
+  transform: translate(28px);
+}
