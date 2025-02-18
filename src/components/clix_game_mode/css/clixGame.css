@@ -1,0 +1,61 @@
+.clix-game-main-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.clix-game-circle {
+  position: absolute;
+}
+
+.clix-game-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 6px solid var(--verants-main-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  filter: blur(4px);
+  overflow: hidden;
+  color: var(--verants-main-color);
+  user-select: none;
+  -moz-user-select: none;
+  box-shadow: 0 0 19px 0 var(--verants-main-color);
+}
+
+.clix-game-circle1 {
+  top: 80px;
+  left: 100px;
+}
+
+.clix-game-circle2 {
+  left: 190px;
+    top: 195px;
+}
+
+.clix-game-circle3 {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 300px;
+}
+
+.clix-game-circle4 {
+  right: 190px;
+  top: 195px;
+}
+
+.clix-game-circle5 {
+  top: 80px;
+  right: 100px;
+}
+
+.clix-game-circle6 {
+  filter: blur(0);
+  overflow: hidden;
+  left: 50%;
+  transform: translateX(-50%);
+}
