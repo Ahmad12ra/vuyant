@@ -1,9 +1,9 @@
 .lobby-users-main-container {
   width: 700px;
-  height: 525px;
-  position: absolute;
+  height: 468px;
+  position: relative;
   left: 50%;
-  transform: translate(-50%, 44px);
+  transform: translate(-50%, 100px);
 }
 
 .player-lobby-stand {
@@ -44,4 +44,154 @@
 .game-mode-main-container {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.players-stands-main-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: 1;
+}
+
+.small-squares-effect-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 361px 52px var(--home-element-main-color);
+  z-index: 1;
+  padding-top: 20px;
+}
+
+.small-square-que {
+  position: absolute;
+  color: #29292933;
+  transition: 10s;
+}
+
+.small-square-que i {
+  transition: 5s;
+}
+
+/* Individual positioning and rotation */
+.small-square-que-one {
+  top: 10%;
+  left: 5%;
+  transform: rotateZ(15deg);
+}
+
+.small-square-que-two {
+  top: 20%;
+  left: 25%;
+  transform: rotateZ(-10deg);
+}
+
+.small-square-que-three {
+  top: 5%;
+  left: 45%;
+  transform: rotateZ(25deg);
+}
+
+.small-square-que-four {
+  top: 15%;
+  left: 65%;
+  transform: rotateZ(-5deg);
+}
+
+.small-square-que-five {
+  top: 10%;
+  left: 85%;
+  transform: rotateZ(30deg);
+}
+
+.small-square-que-six {
+  top: 30%;
+  left: 10%;
+  transform: rotateZ(-20deg);
+}
+
+.small-square-que-seven {
+  top: 35%;
+  left: 30%;
+  transform: rotateZ(10deg);
+}
+
+.small-square-que-eight {
+  top: 40%;
+  left: 50%;
+  transform: rotateZ(-15deg);
+}
+
+.small-square-que-nine {
+  top: 35%;
+  left: 70%;
+  transform: rotateZ(20deg);
+}
+
+.small-square-que-ten {
+  top: 30%;
+  left: 90%;
+  transform: rotateZ(-25deg);
+}
+
+.small-square-que-eleven {
+  top: 50%;
+  left: 5%;
+  transform: rotateZ(5deg);
+}
+
+.small-square-que-twelve {
+  top: 55%;
+  left: 25%;
+  transform: rotateZ(-30deg);
+}
+
+.small-square-que-thirteen {
+  top: 60%;
+  left: 45%;
+  transform: rotateZ(15deg);
+}
+
+.small-square-que-fourteen {
+  top: 55%;
+  left: 65%;
+  transform: rotateZ(-10deg);
+}
+
+.small-square-que-fifteen {
+  top: 50%;
+  left: 85%;
+  transform: rotateZ(25deg);
+}
+
+.small-square-que-sixteen {
+  top: 70%;
+  left: 10%;
+  transform: rotateZ(-5deg);
+}
+
+.small-square-que-seventeen {
+  top: 75%;
+  left: 30%;
+  transform: rotateZ(30deg);
+}
+
+.small-square-que-eighteen {
+  top: 80%;
+  left: 50%;
+  transform: rotateZ(-20deg);
+}
+
+.small-square-que-nineteen {
+  top: 75%;
+  left: 70%;
+  transform: rotateZ(10deg);
+}
+
+.small-square-que-twenty {
+  top: 70%;
+  left: 90%;
+  transform: rotateZ(-15deg);
 }
