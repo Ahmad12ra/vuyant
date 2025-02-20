@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../css/lobby.css";
 import PlayerInfo from "../../player_lobby_info/js/player_lobby_info.js";
 import AjaxGameThumb from "../../ajax_game_mode_thumbnail/js/ajaxGameThumb.js";
@@ -16,12 +16,13 @@ export default function LobbyUsers() {
         setTimeout(() => {
           smallSquareContainer.current.children[i].style.cssText = ``;
         }, 5000);
-      }, 100 + (i * 100));
+      }, 100 + i * 100);
     }
   }
 
   function colorSquares(i) {
-    setTimeout(() => {
+    if (window.location.pathname === "/") {
+      setTimeout(() => {
       const smallSquareEffectAnimation = setInterval(() => {
         smallSquareContainer.current.children[i].children[0].style.cssText =
           "color:rgba(255, 255, 255, 0.49)";
@@ -31,20 +32,26 @@ export default function LobbyUsers() {
         }, 1000);
       }, 2000);
     }, 200 + i * 100);
+    }
   }
 
-  setTimeout( () => {
-    for (let i = 0; i < smallSquareContainer.current.children.length; i++) {
-      
-      colorSquares(i);
+// useEffect(() => {
 
-      moveSquares()
+//         for (let i = 0; i < smallSquareContainer.current.children.length; i++) {
 
-      setInterval(() => {
-        moveSquares()
-      }, 10000);
-    }
-  },0)
+//             colorSquares(i);
+
+//           moveSquares();
+
+//           setInterval(() => {
+
+//             moveSquares();
+
+//           }, 10000);
+
+//         }
+
+//     }, []);
 
   return (
     <div className="lobby-users-main-container">
@@ -114,7 +121,9 @@ export default function LobbyUsers() {
             <i class="fa-solid fa-play"></i>
           </div>
         </div>
-        <TayanGameThumb />
+        <div className="game-mode-thumbnail-main-container">
+          <TayanGameThumb />
+        </div>
       </div>
       <div className="players-stands-main-container">
         <div className="player-lobby-stand player1-stand"></div>

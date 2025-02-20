@@ -1,0 +1,40 @@
+.tayan-game-main-container {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.tayan-details-thumbnail {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 5px;
+    font-style: italic;
+    position: relative;
+}
+
+.tayan-thumbnail-detail-name {
+    font-weight: bold;
+    color: var(--verants-main-color);
+
+}
+
+.rank-nth-adjust-thumbnail {
+position: relative;
+font-size: 12px;
+top: -6px;
+}
+
+.corrected-text-tayan-thumbnail {
+    color: var(--verants-main-color);
+    /* font-family: ; */
+}
+
+.text-tayan-thumbnail {
+    opacity: 0.6;
+}

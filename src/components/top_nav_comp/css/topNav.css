@@ -1,61 +1,70 @@
+.top-home-nav-bar {
+  width: calc(100% - 20px);
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  color: white;
+  padding-right: 20px;
+  position: relative;
+}
 
-  
-  .top-home-nav-bar {
-    width: calc(100% - 20px);
-    padding-top: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 30px;
-    color: white;
-    padding-right: 20px;
-    position: relative;
-  }
-  
-  .top-nav-home-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%);
-    font-weight: bold;
-    user-select: none;
-    gap: 15px
-  }
+.top-nav-home-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%);
+  font-weight: bold;
+  user-select: none;
+  gap: 15px;
+}
 
-  .top-nav-home-options div{
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
+.top-nav-home-options div {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: 0.3s linear;
+}
 
-  .verants-container {
-    position: relative;
-  }
-  
-  .home-element-verants-symbol {
-    transform: translate(0px, 0px);
-    left: 0;
-    position: absolute;
-  }
-  
-  .verants-all-container {
-    position: relative;
-  }
-  
-  .verants-count {
-    padding-left: 30px;
-    font-weight: bold;
-  }
-  
-  .more-options-bars-icon i {
-    font-size: 21px;
-    transform: translateY(2px);
-  }
-  
-  .top-nav-active-option {
-    color: black;
-    background-color: white;
-  }
+.top-nav-home-options div:hover {
+  color: black;
+  background-color: white;
+  transition: 0s;
+}
+
+.verants-container {
+  position: relative;
+}
+
+.home-element-verants-symbol {
+  transform: translate(0px, 0px);
+  left: 0;
+  position: absolute;
+}
+
+.verants-all-container {
+  position: relative;
+}
+
+.verants-count {
+  padding-left: 30px;
+  font-weight: bold;
+}
+
+.more-options-bars-icon i {
+  font-size: 21px;
+  transform: translateY(2px);
+}
+
+.top-nav-active-option {
+  color: black;
+  background-color: white;
+}
+
+.v-pass-top-nav-text {
+  width: 50px;
+}

@@ -1,0 +1,71 @@
+.shop-page-main-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--home-element-main-color);
+  position: relative;
+}
+
+.shop-main-items-container {
+  width: calc(100% - 40px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 10px 20px;
+  height: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.shop-item {
+    position: relative;
+    box-shadow: inset 0 0 31px 66px var(--home-element-main-color);
+    background-image: repeating-linear-gradient(to left, var(--verants-main-color), var(--verants-main-color) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(to top, var(--verants-main-color), var(--verants-main-color) 1px, transparent 1px, transparent 40px);
+    border-width: 2px ;
+    border-style: solid ;
+    border-color: #1f1f1f;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.shop-item:hover {
+    border-color: var(--verants-main-color);
+    transition: 0s;
+}
+
+.shop-main-bundel-item {
+  grid-column: 1/4;
+  
+}
+
+.shop-item-one {
+  grid-column: 1/2;
+}
+
+.shop-item-two {
+  grid-column: 2/3;
+}
+
+.shop-item-three {
+  grid-column: 3/4;
+}
+
+.shop-price-main-container {
+  display: flex;
+  position: absolute;
+  gap: 40px;
+  color: white;
+  font-weight: bold;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -20px) scale(1.2);
+  z-index: 2;
+}
+
+.verants-shop-icon {
+}
+
+.shop-item-price-count {
+}

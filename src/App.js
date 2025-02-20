@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import HomePage from "./components/home_comp/js/home.js";
 import Sign from "./components/sign_comp/js/sign.js";
 import Err from "./components/err_comp/js/index.js";
+import ShopPage from "./components/shop_page/js/shop.js"
 import "./css/all.css";
-function App() {
 
-  let [availableToken, setAvailableToken] = useState(false)
+function App() {
+  let [availableToken, setAvailableToken] = useState(false);
 
   const newToken = new Date().getTime().toString(16);
 
@@ -44,25 +45,19 @@ function App() {
     });
   }
 
-    useEffect(() => {
-      tokenChecker()
-      setTimeout(() => {
-        tokenChecker()
-      },1000)
-    },[])
-
-
+  useEffect(() => {
+    tokenChecker();
+  }, []);
 
   return (
     <>
-      {
-        <BrowserRouter>
-          <Routes>
-            {availableToken ? <Route path="/" element={<HomePage/>} /> : <Route path="/" element={<Sign/>} /> }
-            <Route path="*" element={<Err />} />
-          </Routes>
-        </BrowserRouter>
-      }
+      <BrowserRouter>
+        <Routes>
+          {availableToken ? <Route path="/" element={<HomePage />} /> : <Route path="/" element={<Sign />} />}
+          {availableToken ? <Route path="/shop" element={<ShopPage />} /> : <Route path="/shop" element={<Sign />} />}
+          <Route path="*" element={<Err />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

@@ -1,9 +1,7 @@
 import { useRef, useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import "../css/sign.css";
 
 export default function Sign() {
-  const naviagate = useNavigate();
   const checkboxRef = useRef(null);
   const errBox = useRef(null);
   const usernameInput = useRef(null);
