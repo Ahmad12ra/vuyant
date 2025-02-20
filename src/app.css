@@ -1,0 +1,16 @@
+body {
+    overflow: hidden;
+}
+
+* {
+    cursor: none;
+}
+
+.cursor-main-container {
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 white;
+}

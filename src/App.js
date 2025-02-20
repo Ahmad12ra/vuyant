@@ -1,12 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import HomePage from "./components/home_comp/js/home.js";
 import Sign from "./components/sign_comp/js/sign.js";
 import Err from "./components/err_comp/js/index.js";
 import ShopPage from "./components/shop_page/js/shop.js"
 import "./css/all.css";
+import "./app.css";
 
 function App() {
+
+  const mainCursorContainer = useRef(null);
+
   let [availableToken, setAvailableToken] = useState(false);
 
   const newToken = new Date().getTime().toString(16);
@@ -49,8 +53,16 @@ function App() {
     tokenChecker();
   }, []);
 
+  window.onmousemove = (e) => {
+    const y = `${e.pageY -5}px`;
+    const x = `${e.pageX -5}px`;
+    mainCursorContainer.current.style.top = y;
+    mainCursorContainer.current.style.left = x;
+  }
+
   return (
     <>
+    <div ref={mainCursorContainer} className="cursor-main-container"></div>
       <BrowserRouter>
         <Routes>
           {availableToken ? <Route path="/" element={<HomePage />} /> : <Route path="/" element={<Sign />} />}
