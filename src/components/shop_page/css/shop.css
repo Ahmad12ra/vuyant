@@ -24,14 +24,15 @@
     box-shadow: inset 0 0 31px 66px var(--home-element-main-color);
     background-image: repeating-linear-gradient(to left, var(--verants-main-color), var(--verants-main-color) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(to top, var(--verants-main-color), var(--verants-main-color) 1px, transparent 1px, transparent 40px);
     border-width: 2px ;
-    border-style: solid ;
-    border-color: #1f1f1f;
+    outline-style: solid ;
+    outline-color: #1f1f1f;
     border-radius: 20px;
     transition: 0.5s;
+    overflow: hidden;
 }
 
 .shop-item:hover {
-    border-color: var(--verants-main-color);
+    outline-color: var(--verants-main-color);
     transition: 0s;
 }
 
@@ -68,4 +69,23 @@
 }
 
 .shop-item-price-count {
+}
+
+.shop-item-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+    z-index: 1;
+    background-color: #0000008f;
+    width: 100%;
+    height: 100%;
+}
+
+.items-cover-shop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
 }

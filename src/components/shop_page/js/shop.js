@@ -4,18 +4,18 @@ import TopNav from "../../top_nav_comp/js/topNav";
 import Verants from "../../verants_comp/js/verants";
 import clickAudio from "../../click_audio_func/click_audio_func";
 import hoverAudio from "../../hover_audio_func/hover_audio_func";
+import { FirstCharacterCircle } from "../../characters_file/js/characters";
+import { FirstCursor } from "../../cursors_file/js/cursors";
 export default function ShopPage() {
-
   const shopMainItemsContainer = useRef(null);
 
   useEffect(() => {
     Array.from(shopMainItemsContainer.current.children).forEach((el) => {
       el.onmouseover = () => {
         hoverAudio();
-      }
+      };
 
       el.onclick = () => clickAudio();
-
     });
   }, []);
 
@@ -24,6 +24,11 @@ export default function ShopPage() {
       <TopNav shop={true} />;
       <div ref={shopMainItemsContainer} className="shop-main-items-container">
         <div className="shop-item shop-main-bundel-item">
+          <div className="items-cover-shop"></div>
+          <div className="shop-item-main-container">
+            <FirstCharacterCircle />
+            <FirstCursor />
+          </div>
           <div className="shop-price-main-container">
             <div className="verants-shop-icon">
               <Verants scale={0.4} />
@@ -32,7 +37,8 @@ export default function ShopPage() {
           </div>
         </div>
         <div className="shop-item shop-item-one">
-        <div className="shop-price-main-container">
+          <div className="items-cover-shop"></div>
+          <div className="shop-price-main-container">
             <div className="verants-shop-icon">
               <Verants scale={0.4} />
             </div>
@@ -40,7 +46,8 @@ export default function ShopPage() {
           </div>
         </div>
         <div className="shop-item shop-item-two">
-        <div className="shop-price-main-container">
+          <div className="items-cover-shop"></div>
+          <div className="shop-price-main-container">
             <div className="verants-shop-icon">
               <Verants scale={0.4} />
             </div>
@@ -48,7 +55,8 @@ export default function ShopPage() {
           </div>
         </div>
         <div className="shop-item shop-item-three">
-        <div className="shop-price-main-container">
+          <div className="items-cover-shop"></div>
+          <div className="shop-price-main-container">
             <div className="verants-shop-icon">
               <Verants scale={0.4} />
             </div>

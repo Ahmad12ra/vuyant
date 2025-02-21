@@ -13,4 +13,5 @@ body {
     position: absolute;
     z-index: 99;
     box-shadow: 0 0 10px 0 white;
+    pointer-events: none;
 }
