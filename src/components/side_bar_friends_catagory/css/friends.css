@@ -1,0 +1,111 @@
+.status-option {
+    color: white;
+    z-index: 1;
+    width: 33.3%;
+    height: 100%;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.status-option-slider {
+    position: absolute;
+    width: 33.3%;
+    height: 100%;
+    background-color: white;
+    border-radius: 30px;
+    transition: 0.2s;
+    left: 0%;
+}
+
+.status-option-acitve {
+    color: black;
+}
+
+.friends-list-main-container::-webkit-scrollbar {
+    width: 0;
+}
+
+.friends-list-main-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 30px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
+.friends-list-container {
+    display: flex;
+    grid-template-columns: 1fr;
+    align-items: start;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30px;
+}
+
+
+.friends-list-top-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: blue;
+    z-index: 1;
+}
+
+.list-friend-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 24px);
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.2s;
+    border: 2px solid white;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.frind-profile-image {
+    font-size: 30px;
+}
+
+.friend-profile-details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+}
+
+.friend-status-details {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.frind-options-main-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+.friend-option {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid white;
+    transition: 0.4s;
+}
+
+.friend-option:hover {
+    background-color: white;
+    color: black;
+    transition: 0s;
+}

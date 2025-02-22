@@ -121,9 +121,10 @@ export default function LobbyUsers() {
             <i class="fa-solid fa-play"></i>
           </div>
         </div>
-        <div className="game-mode-thumbnail-main-container">
+        {/* <div className="game-mode-thumbnail-main-container">
           <TayanGameThumb />
-        </div>
+        </div> */}
+        <AjaxGameThumb />
       </div>
       <div className="players-stands-main-container">
         <div className="player-lobby-stand player1-stand"></div>

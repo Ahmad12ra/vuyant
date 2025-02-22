@@ -6,6 +6,7 @@ import clickAudio from "../../click_audio_func/click_audio_func";
 import hoverAudio from "../../hover_audio_func/hover_audio_func";
 import { FirstCharacterCircle } from "../../characters_file/js/characters";
 import { FirstCursor } from "../../cursors_file/js/cursors";
+import { FirstHat } from "../../hats_file/js/hats";
 export default function ShopPage() {
   const shopMainItemsContainer = useRef(null);
 
@@ -27,6 +28,7 @@ export default function ShopPage() {
           <div className="items-cover-shop"></div>
           <div className="shop-item-main-container">
             <FirstCharacterCircle />
+            <FirstHat />
             <FirstCursor />
           </div>
           <div className="shop-price-main-container">

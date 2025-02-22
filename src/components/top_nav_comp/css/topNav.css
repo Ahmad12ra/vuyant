@@ -56,7 +56,25 @@
 
 .more-options-bars-icon i {
   font-size: 21px;
-  transform: translateY(2px);
+}
+
+.more-options-bars-icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: 0.2s linear;
+  color: white;
+  background-color: transparent;
+  position: relative;
+}
+
+.more-options-bars-icon:hover {
+  color: black;
+  background-color: white;
+  transition: none;
 }
 
 .top-nav-active-option {
@@ -66,4 +84,26 @@
 
 .v-pass-top-nav-text {
   width: 50px;
+}
+
+.nav-sideBar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  z-index: 8;
+  padding: 20px 20px 0;
+  user-select: none;
+  background-color: #000c21;
+}
+
+.back-shadow-side-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000099;
+  z-index: 7;
 }
