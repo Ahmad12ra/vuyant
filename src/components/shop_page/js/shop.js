@@ -22,7 +22,7 @@ export default function ShopPage() {
 
   return (
     <div className="shop-page-main-container">
-      <TopNav shop={true} />;
+      <TopNav shop={true} />
       <div ref={shopMainItemsContainer} className="shop-main-items-container">
         <div className="shop-item shop-main-bundel-item">
           <div className="items-cover-shop"></div>

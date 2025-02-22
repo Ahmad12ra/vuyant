@@ -1,0 +1,80 @@
+.v-pass-page-main-container {
+  background-color: var(--home-element-main-color);
+  width: 100%;
+  height: 100vh;
+}
+
+.v-pass-content-main-container {
+  width: calc(100% - 10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.v-pass-content-top-part {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.back-shadow-v-pass-top-part {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #b600ffab;
+  box-shadow: 0 0 194px 135px #b600ffd4;
+  opacity: 0.1;
+}
+
+.v-pass-content-bottom-part {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.v-pass-content-bottom-part::-webkit-scrollbar {
+  width: 0px;
+}
+
+.bottom-layer-bottom-part-v-pass {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.progress-bar-main-container-part {
+  width: 200px;
+  height: 20px;
+  display: flex;
+  position: relative;
+}
+
+.progress-bar-part-rec {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, red, red 50%, #80808027 0px);
+}
+
+.progress-bar-part-circle {
+    width: 20px;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #8080802c;
+    position: absolute;
+    right: 0;
+}

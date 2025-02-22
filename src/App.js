@@ -6,6 +6,7 @@ import Err from "./components/err_comp/js/index.js";
 import ShopPage from "./components/shop_page/js/shop.js";
 import "./css/all.css";
 import "./app.css";
+import Vpass from "./components/vPass_comp/js/vPass.js";
 
 function App() {
   const mainCursorContainer = useRef(null);
@@ -60,9 +61,9 @@ function App() {
   window.onmousemove = (e) => {
     y = e.pageY;
     x = e.pageX;
-    mainCursorContainer.current.style.cssText = `top: ${y - 10}px; left: ${x - 10}px`;
-
-    
+    mainCursorContainer.current.style.cssText = `top: ${y - 10}px; left: ${
+      x - 10
+    }px`;
   };
 
   return (
@@ -79,6 +80,11 @@ function App() {
             <Route path="/shop" element={<ShopPage />} />
           ) : (
             <Route path="/shop" element={<Sign />} />
+          )}
+          {availableToken ? (
+            <Route path="/vPass" element={<Vpass />} />
+          ) : (
+            <Route path="/vPass" element={<Sign />} />
           )}
           <Route path="*" element={<Err />} />
         </Routes>

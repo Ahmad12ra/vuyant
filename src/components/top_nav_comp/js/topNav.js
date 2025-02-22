@@ -58,7 +58,7 @@ export default function TopNav(props) {
           </div>
           <div
             className={
-              "top-nav-option v-pass-top-nav-text" +
+              "top-nav-option v-pass-top-nav-text " +
               (props.vPass ? "top-nav-active-option " : "")
             }
             onClick={() => navHome("/vPass")}
