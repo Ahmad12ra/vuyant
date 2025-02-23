@@ -56,15 +56,48 @@ function App() {
   useEffect(() => {
     tokenChecker();
   }, []);
-  let y;
-  let x;
-  window.onmousemove = (e) => {
-    y = e.pageY;
+
+  // let y;
+  // let x;
+
+  // window.onmousemove = (e) => {
+  //   y = e.pageY;
+  //   x = e.pageX;
+  //       mainCursorContainer.current.style.cssText = `top: ${y - 10}px; left: ${
+  //         x - 10
+  //       }px`;
+  // };
+
+  let x = 0,
+    y = 0;
+  let isMoving = false;
+
+  const handleMouseMove = (e) => {
     x = e.pageX;
-    mainCursorContainer.current.style.cssText = `top: ${y - 10}px; left: ${
-      x - 10
-    }px`;
+    y = e.pageY;
+
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(updateCursor);
+    }
   };
+
+  const updateCursor = () => {
+    if (mainCursorContainer.current) {
+      mainCursorContainer.current.style.transform = `translate(${x - 10}px, ${
+        y - 10
+      }px)`;
+    }
+    isMoving = false;
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <div ref={websiteMainContainer}>
