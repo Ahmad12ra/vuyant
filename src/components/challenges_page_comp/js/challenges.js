@@ -70,6 +70,12 @@ export default function ChallengesPage() {
             </div>
           </div>
         </div>
+        <div className="right-part-challenge-page-main-container">
+          <div className="challenge-reward-icon-right-part-main-container">
+          <FirstHat />
+          </div>
+          <div className="challenge-reward-count-right-part-main-container">FoboHit</div>
+        </div>
       </div>
     </div>
   );

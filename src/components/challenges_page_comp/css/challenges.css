@@ -53,6 +53,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  z-index: 2;
 }
 
 .left-part-challenges-main-container::-webkit-scrollbar {
@@ -178,3 +179,25 @@ z-index: 2;
   font-style: italic;
 }
 
+/* right part */
+
+.right-part-challenge-page-main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  pointer-events: none;
+  transform: scale(3);
+}
+
+.challenge-reward-icon-right-part-main-container {
+  transform: scale(2);
+}
+
+.challenge-reward-count-right-part-main-container {
+font-weight: bold;
+color: white;
+text-shadow: 0 0 10px #ffffff9a;
+}
