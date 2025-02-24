@@ -10,6 +10,7 @@ import Vpass from "./components/vPass_comp/js/vPass.js";
 import SkinsPage from "./components/skin_page_comp/js/skin_page.js";
 import RankPage from "./components/rank_page_comp/js/rank.js";
 import VerantsPage from "./components/verants_page_comp/js/verants.js";
+import ChallengesPage from "./components/challenges_page_comp/js/challenges.js";
 
 function App() {
   const mainCursorContainer = useRef(null);
@@ -136,6 +137,11 @@ function App() {
             <Route path="/verants" element={<VerantsPage />} />
           ) : (
             <Route path="/verants" element={<Sign />} />
+          )}
+          {availableToken ? (
+            <Route path="/challenges" element={<ChallengesPage />} />
+          ) : (
+            <Route path="/challenges" element={<Sign />} />
           )}
           <Route path="*" element={<Err />} />
         </Routes>

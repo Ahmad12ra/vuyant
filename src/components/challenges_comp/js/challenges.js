@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../css/challenges.css";
 export default function Challenges() {
+
+    const nav = useNavigate();
+
   return (
     <>
         <div className="challenges-main-container">
@@ -16,7 +20,7 @@ export default function Challenges() {
             </div>
             <div className="challenges-clickable-main-container">
                 <div className="top-chllenges-button-trans"></div>
-                <span>Challenges</span>
+                <span onClick={() => {nav("/challenges")}}>Challenges</span>
             </div>
         </div>
     </>

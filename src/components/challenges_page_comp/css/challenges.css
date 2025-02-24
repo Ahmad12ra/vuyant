@@ -1,0 +1,121 @@
+.challenges-page-main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--home-element-main-color);
+  position: relative;
+}
+
+.top-go-back-icon-challenges {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  color: white;
+  font-size: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
+  transition: 0.2s;
+  outline: 2px solid white;
+  z-index: 2;
+}
+
+.top-go-back-icon-challenges::before {
+  content: '';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.top-go-back-icon-challenges:hover {
+  background-color: white;
+  color: black;
+  transition: 0s;
+}
+
+.challenges-show-main-main-container {
+  width: 100%;
+  min-height: 755px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.left-part-challenges-main-container {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.left-part-challenges-main-container::-webkit-scrollbar {
+  width: 0;
+}
+
+.challenge-section-main-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid white;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.inner-challenge-section-specs {
+  height: 100%;
+  border-right: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: start;
+  padding: 10px;
+}
+
+.inner-challenge-title {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.inner-description-title {
+  color: white;
+  opacity: 0.8;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.inner-challenge-progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  padding-right: 10px;
+  box-sizing: border-box;
+  color: white;
+  gap: 2px;
+}
+
+.inner-inner-challenge-progress-count {
+
+}
+
+.inner-inner-challenge-progress-bar {
+  width: 100%;
+  height: 10px;
+  border: 1fpx solid white;
+  border-radius: 2px;
+  background-image: linear-gradient(to right, var(--verants-main-color), var(--verants-main-color) 50%, rgba(255, 255, 255, 0.103) 0%);
+}
