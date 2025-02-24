@@ -1,0 +1,158 @@
+.verants-page-main-container {
+  background-color: var(--home-element-main-color);
+  width: 100%;
+  height: 100vh;
+}
+
+.verants-page-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 500px;
+  min-width: 500px;
+  max-width: 1200px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
+.verants-buy-main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline-style: solid;
+  outline-color: #52007a;
+  outline-width: 2px;
+  border-radius: 5px; 
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s;
+  color: white;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.verants-buy-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.verants-buy-main-container:hover {
+  outline-color: var(--verants-main-color);
+  transition: 0s;
+}
+
+
+.verants-buy-main-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--verants-main-color);
+  opacity: 0.4;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 99px 120px var(--verants-main-color);
+}
+
+.verants-buy-top-part-verants-number {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.verants-buy-icon-container {
+  position: relative;
+}
+
+.verants-buy-icon-container .inner-veratns-buy-icon-container {
+  left: 100%;
+  position: absolute;
+  transform: translateX(-45px) scale(0.5);
+}
+
+.veratns-buy-number-div {
+font-weight: bold;
+font-style: italic;
+font-size: 20px;
+}
+
+.verants-buy-bottom-verants-cost-main-container {
+  padding: 10px 0;
+  background-color: #52007a;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  transition: 0.2s;
+  position: relative;
+
+}
+
+.verants-buy-main-container:hover .verants-buy-bottom-verants-cost-main-container {
+  background-color: var(--verants-main-color);
+  transition: 0s;
+}
+
+.verants-buy-bottom-verants-cost-main-container::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 0;
+  width: 25px;
+  height: 20px;
+  background-color: inherit;
+  transform: skewX(-235deg);
+}
+
+.verants-buy-bottom-verants-cost-main-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 25px;
+  height: 20px;
+  background-color: inherit;
+  transform: skewX(235deg);
+}
+
+.verants-buy-middle-verants-icons-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.verants-buy-middle-verants-icons-main-container .verants-buy-middle-inner-icon {
+  width: 80px;
+  height: 72px;
+}
+
+.part-verants-buy-inner-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px
+}

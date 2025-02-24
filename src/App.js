@@ -7,6 +7,9 @@ import ShopPage from "./components/shop_page/js/shop.js";
 import "./css/all.css";
 import "./app.css";
 import Vpass from "./components/vPass_comp/js/vPass.js";
+import SkinsPage from "./components/skin_page_comp/js/skin_page.js";
+import RankPage from "./components/rank_page_comp/js/rank.js";
+import VerantsPage from "./components/verants_page_comp/js/verants.js";
 
 function App() {
   const mainCursorContainer = useRef(null);
@@ -118,6 +121,21 @@ function App() {
             <Route path="/vPass" element={<Vpass />} />
           ) : (
             <Route path="/vPass" element={<Sign />} />
+          )}
+          {availableToken ? (
+            <Route path="/skin" element={<SkinsPage />} />
+          ) : (
+            <Route path="/skin" element={<Sign />} />
+          )}
+          {availableToken ? (
+            <Route path="/rank" element={<RankPage />} />
+          ) : (
+            <Route path="/rank" element={<Sign />} />
+          )}
+          {availableToken ? (
+            <Route path="/verants" element={<VerantsPage />} />
+          ) : (
+            <Route path="/verants" element={<Sign />} />
           )}
           <Route path="*" element={<Err />} />
         </Routes>

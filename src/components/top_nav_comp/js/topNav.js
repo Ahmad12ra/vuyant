@@ -37,7 +37,7 @@ export default function TopNav(props) {
   }, []);
 
   return (
-    <>
+    <div>
       <div className="top-home-nav-bar">
         <div ref={topNavMainContainer} className="top-nav-home-options">
           <div
@@ -117,6 +117,6 @@ export default function TopNav(props) {
         {showSideBar ? <div onClick={() => setShowSideBar(false)} className="back-shadow-side-bar"></div> : null}
         {showSideBar ? <div className="nav-sideBar"><SideBar /></div> : null}
       
-    </>
+    </div>
   );
 }

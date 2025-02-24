@@ -1,0 +1,126 @@
+:root {
+  --now-selected-background-color: #b600ff21;
+}
+
+.skin-page-comp-main-container {
+  background-color: var(--home-element-main-color);
+  width: 100%;
+  height: 100vh;
+}
+
+.skin-page-costume-main-container {
+  width: 100%;
+  height: 600px;
+  padding: 0 40px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.left-part-costumes-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.owned-item-costume {
+  padding: 30px 30px 10px;
+  position: relative;
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--default-outline-color-not-selected);
+  border-radius: 5px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+.owned-item-costume:hover {
+  outline-color: white;
+  transition: 0s;
+  background-color: var(--default-select-background-color);
+}
+
+.owned-item-costume1 {
+  grid-column: 1/4;
+}
+
+.item-name-costume {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  font-weight: bold;
+  opacity: 0.6;
+  font-size: 20px;
+  color: white;
+  z-index: 1;
+  transform: translateX(-50%);
+}
+
+.over-lay-skin-owned-items {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.right-part-costume-show {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.inner-bottom-part-costume-stand {
+  width: 100%;
+  height: 20px;
+  background-color: var(--verants-main-color);
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  position: relative;
+}
+
+.inner-bottom-part-costume-stand::after,
+.inner-bottom-part-costume-stand::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--verants-main-color);
+  top: 0;
+}
+
+.inner-bottom-part-costume-stand::before {
+  right: 100%;
+  transform: skewX(-50deg) translateX(calc(50% + 2px));
+}
+
+.inner-bottom-part-costume-stand::after {
+  left: 100%;
+  transform: skewX(50deg) translateX(calc(-50% - 2px));
+}
+
+.inner-top-part-costume-show {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  transform: scale(4)
+}

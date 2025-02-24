@@ -124,7 +124,7 @@ export default function LobbyUsers() {
         {/* <div className="game-mode-thumbnail-main-container">
           <TayanGameThumb />
         </div> */}
-        <AjaxGameThumb />
+        <ClixGameThumb />
       </div>
       <div className="players-stands-main-container">
         <div className="player-lobby-stand player1-stand"></div>

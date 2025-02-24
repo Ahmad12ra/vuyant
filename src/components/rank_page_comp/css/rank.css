@@ -1,0 +1,85 @@
+.rank-page-main-container {
+    background-color: var(--home-element-main-color);
+    width: 100%;
+    height: 100vh;
+}
+
+.rank-show-main-container {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.rank-page-top-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.rank-page-bottom-part {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: white
+}
+
+.rank-name-top-part {
+    color: white;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.438);
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.rank-image-middle-part {
+    font-size: 100px;
+    color: var(--verants-main-color);
+}
+
+.rank-progress-main-container {
+    width: 300px;
+    height: 20px;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
+    gap: 2px;
+    border: 2px solid var(--verants-main-color);
+}
+
+.rank-progress-main-container div{
+    background-color: var(--verants-main-color);
+}
+
+.rank-progress-part3 {
+    background-color: transparent !important;
+}
+
+.ranks-goal-current-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.ranks-goal-current-container div i {
+    color: var(--verants-main-color);
+}
+
+.wins-losts-status-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

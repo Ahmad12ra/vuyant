@@ -1,3 +1,8 @@
+:root {
+  --default-outline-color-not-selected: #454545;
+  --default-select-background-color: #41414147;
+}
+
 .v-pass-page-main-container {
   background-color: var(--home-element-main-color);
   width: 100%;
@@ -13,7 +18,7 @@
   gap: 40px;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: calc(50% + 60px);
   transform: translate(-50%, -50%);
 }
 
@@ -22,7 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 300px;
 }
 
 .back-shadow-v-pass-top-part {
@@ -41,7 +46,7 @@
 .v-pass-content-bottom-part {
   width: 100%;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: start;
   gap: 20px;
   overflow-x: auto;
@@ -51,7 +56,6 @@
   padding: 0px 90px 0px 40px;
   box-sizing: border-box;
 }
-
 
 .v-pass-content-bottom-part::-webkit-scrollbar {
   width: 0px;
@@ -113,9 +117,8 @@
   top: calc(100% + 10px);
 }
 
-
 .first-part-level-number {
-  left: -5px
+  left: -5px;
 }
 
 .level-part-number {
@@ -153,10 +156,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #41414147;
+  background-color: var(--default-select-background-color);
   outline-width: 2px;
   outline-style: solid;
-  outline-color: #454545;
+  outline-color: var(--default-outline-color-not-selected);
   transition: 0.2s;
   z-index: 1;
 }
@@ -173,4 +176,32 @@
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+.bottom-part-buy-v-pass-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+
+.buy-v-pass-inner-button:hover {
+  background-color: var(--verants-main-color);
+  color: white;
+  transition: 0s;
+}
+
+.buy-v-pass-inner-button {
+  position: relative;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  outline: 2px solid var(--verants-main-color);
+  border-radius: 5px;
+  font-size: 25px;
+  color: var(--verants-main-color);
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: 0.2s;
 }
