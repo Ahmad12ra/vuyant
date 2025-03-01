@@ -231,6 +231,25 @@ export default function Sign() {
 
   const token = new Date().getTime().toString(16);
 
+  async function getUserId(username) {
+    try {
+    const fet = await fetch("http://localhost/verant_apis/getUserIdByName.php", {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify({username: username})
+    })
+    const res = await fet.json();
+
+    console.log(res)
+
+    if (res.userId) {
+      window.localStorage["userId"] = res.userId;
+    };
+  } catch (e) {
+    console.log("error brother occured!")
+  }
+}
+
 async function addUser(username, password, email) {
     try {
     const fet = await fetch("http://localhost/verant_apis/sign_up_api.php", {
@@ -240,15 +259,15 @@ async function addUser(username, password, email) {
     })
     const res = await fet.json();
     if(res.message === "already exists") showError("user already exists");
-    if (res.status == 404) showError("error occured"); 
-    if (res.status == 500) showError("Internal Server Error"); 
+    else if (res.status == 404) showError("error occured"); 
+    else if (res.status == 500) showError("Internal Server Error"); 
     else if (res.message === "added") {
       window.localStorage["token"] = token;
-      window.localStorage["username"] = username;
+      await getUserId(username)
       window.location.reload()
     };
   } catch (e) {
-    console.log("error brother occured!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log("error brother occured!")
   }
 }
 
@@ -262,12 +281,12 @@ async function signUser(username, password) {
     const res = await fet.json();
     if(res.message !== "valid login") showError("unvalid username or password");
     else if (res.message === "valid login") {
+      await getUserId(username)
       window.localStorage["token"] = res.token;
-      window.localStorage["username"] = username;
       window.location.reload()
     };
   } catch (e) {
-    console.error("error brother");
+    console.error("error brother occured!");
   }
 }
 

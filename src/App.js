@@ -24,7 +24,7 @@ function App() {
     window.localStorage.token = newToken;
   }
 
-  async function signUser(username, token) {
+  async function signUserWithId(userId, token) {
     try {
       const fet = await fetch(
         "http://localhost/verant_apis/token_checker_&_updater.php",
@@ -32,7 +32,7 @@ function App() {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
-            username: username,
+            userId: userId,
             token: token,
             newToken: newToken,
           }),
@@ -49,8 +49,8 @@ function App() {
   }
 
   function tokenChecker() {
-    signUser(
-      window.localStorage["username"],
+    signUserWithId(
+      window.localStorage["userId"],
       window.localStorage["token"]
     ).then((res) => {
       setAvailableToken(res);
@@ -60,17 +60,6 @@ function App() {
   useEffect(() => {
     tokenChecker();
   }, []);
-
-  // let y;
-  // let x;
-
-  // window.onmousemove = (e) => {
-  //   y = e.pageY;
-  //   x = e.pageX;
-  //       mainCursorContainer.current.style.cssText = `top: ${y - 10}px; left: ${
-  //         x - 10
-  //       }px`;
-  // };
 
   let x = 0,
     y = 0;

@@ -4,7 +4,7 @@ export default function PlayerLobbyInfo(props) {
     <div className="player-info-container">
       <div className="top-info-inner-container">
         <div className="player-profile-img">
-          <i class="fa-solid fa-circle-user"></i>
+        {props.userCustume}
         </div>
         <div className="after-player-profile-content">
           <div className="player-inner-state">{props.state}</div>

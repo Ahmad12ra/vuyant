@@ -4,6 +4,8 @@ import PlayerInfo from "../../player_lobby_info/js/player_lobby_info.js";
 import AjaxGameThumb from "../../ajax_game_mode_thumbnail/js/ajaxGameThumb.js";
 import ClixGameThumb from "../../clix_game_mode_thumbnail/js/clix_thumbnail.js";
 import TayanGameThumb from "../../tayan_game_mode_thumbnail/js/tayan.js";
+import * as characters from "../../characters_file/js/characters.js";
+import * as hats from "../../hats_file/js/hats.js";
 export default function LobbyUsers() {
   const smallSquareContainer = useRef(null);
 
@@ -134,7 +136,7 @@ export default function LobbyUsers() {
             state="Online"
             username="Ahmed12ra"
             userRank={<i class="fa-solid fa-shield"></i>}
-            userCustume={<i class="fa-solid fa-user"></i>}
+            userCustume={< characters.FirstCharacterCircle hat={<hats.FirstHat />} />}
             level="19"
           />
         </div>

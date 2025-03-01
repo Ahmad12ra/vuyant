@@ -50,18 +50,20 @@ export function FirstCharacterCircle(props) {
     transform: "translateY(-50%)",
     fontWeight: "bold",
     left: "5px",
+    color: "black",
+    fontSize: "16px"
   }
 
   const innerCharacterBodySpan = {
     fontSize: "14px",
     position: "relative",
-    top: "-5px", 
+    top: "-5px",
     color: "var(--verants-main-color)",
   }
 
   return (
     <div className="character-main-container">
-      <div className="character-hat">{props.hat}</div>
+      <div>{props.hat}</div>
       <div className="character-head">
         <div style={characterEyebrows} className="character-eyebrows">
           <div style={characterEyebrowOne} className="character-eyebrow"></div>
