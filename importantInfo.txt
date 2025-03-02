@@ -1,1 +1,3 @@
-db mysql Version: 10.4.32-MariaDB
+- db mysql Version: 10.4.32-MariaDB
+
+- vuyant folder is the db inside mysql
