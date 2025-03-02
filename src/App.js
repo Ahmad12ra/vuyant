@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, createContext } from "react";
 import HomePage from "./components/home_comp/js/home.js";
 import Sign from "./components/sign_comp/js/sign.js";
 import Err from "./components/err_comp/js/index.js";
@@ -12,10 +12,16 @@ import RankPage from "./components/rank_page_comp/js/rank.js";
 import VerantsPage from "./components/verants_page_comp/js/verants.js";
 import ChallengesPage from "./components/challenges_page_comp/js/challenges.js";
 
+export const UseContextValues = createContext();
+
 function App() {
   const mainCursorContainer = useRef(null);
   const websiteMainContainer = useRef(null);
-
+  let [username, setUsername] = useState("Unknown");
+  let [userLevel, setUserLevel] = useState(1);
+  let [currentXp, setCurrentXp] = useState(0);
+  let [goalXp, setGoalXp] = useState(2000);
+  let [validUser, setValidUser] = useState({valid: false});
   let [availableToken, setAvailableToken] = useState(false);
 
   const newToken = new Date().getTime().toString(16);
@@ -23,6 +29,65 @@ function App() {
   function updateToken() {
     window.localStorage.token = newToken;
   }
+
+  useEffect(() => {
+  if (validUser.valid) {
+    (async function getUserLevel() {
+      try {
+        const fet = await fetch(
+          "http://localhost/verant_apis/getUserLevel.php",
+          {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ userId: validUser.userId}),
+          }
+        );
+
+        const res = await fet.json();
+        
+        if (res.goalLevel) {
+          setUserLevel(res.goalLevel - 1)
+          setCurrentXp(res.currentXp)
+          setGoalXp(res.goalXp)
+        }
+
+      } catch (e) {
+        console.log("error brother occured!" + e);
+        return false;
+      }
+    }())
+  }
+}, [validUser])
+
+  
+  
+
+
+  // gets user name from his id
+  async function getUserName(userId) {
+    try {
+      const fet = await fetch(
+        "http://localhost/verant_apis/getUsernameFromId.php",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            userId: userId
+          }),
+        }
+      );
+      const res = await fet.json();
+      if (res.username) 
+        setUsername(res.username);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // gets user name from his id
+  useEffect(() => {
+    getUserName(window.localStorage["userId"]);
+  }, [])
 
   async function signUserWithId(userId, token) {
     try {
@@ -40,6 +105,7 @@ function App() {
       );
       const res = await fet.json();
       if (res.message === "valid quick login") {
+        setValidUser({valid: true, userId: userId});
         updateToken();
         return true;
       } else return false;
@@ -92,9 +158,20 @@ function App() {
     };
   }, []);
 
+
+  let providerValues = {
+    username: username,
+    userLevel: userLevel,
+    currentXp: currentXp,
+    goalXp: goalXp,
+   }
+    
+  
+
   return (
     <div ref={websiteMainContainer}>
       <div ref={mainCursorContainer} className="cursor-main-container"></div>
+      <UseContextValues.Provider value={providerValues}>
       <BrowserRouter>
         <Routes>
           {availableToken ? (
@@ -135,6 +212,7 @@ function App() {
           <Route path="*" element={<Err />} />
         </Routes>
       </BrowserRouter>
+      </UseContextValues.Provider >
     </div>
   );
 }

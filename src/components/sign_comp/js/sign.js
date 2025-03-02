@@ -12,8 +12,8 @@ export default function Sign() {
   let [passwordState, setPasswordState] = useState("");
   let [hidePass,setHidePass] = useState("password");
   let [signUp, setSignUp] = useState(false);
-  let [signInClass, setsignInClass] = useState("active-title")
-  let [signUpClass, setsignUpClass] = useState("")
+  let [signInClass, setsignInClass] = useState("active-title");
+  let [signUpClass, setsignUpClass] = useState("");
   let emailValidation = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
   // fn for which title to glow signin or signup 
   function setGlowTitle(inOrUp) {
@@ -231,7 +231,46 @@ export default function Sign() {
 
   const token = new Date().getTime().toString(16);
 
-  async function getUserId(username) {
+
+  
+
+  async function addUserToCostumeTableInDb(userId) {
+    try {
+      const fet = await fetch("http://localhost/verant_apis/addUserToCostumeTable.php", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({userId: userId})
+      })
+      const res = await fet.json();
+  
+      if (res.status === 200) {
+        return true
+      } else return false;
+    } catch (e) {
+      console.log("error brother occured!" + e);
+      return false;
+    }
+  }
+
+  async function addUserToLevelsTableInDb(userId) {
+    try {
+      const fet = await fetch("http://localhost/verant_apis/addUserToLevels.php", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({userId: userId})
+      })
+      const res = await fet.json();
+  
+      if (res.status === 200) {
+        return true
+      } else return false;
+    } catch (e) {
+      console.log("error brother occured!" + e);
+      return false;
+    }
+  }
+
+  async function getUserId(username, signUp) {
     try {
     const fet = await fetch("http://localhost/verant_apis/getUserIdByName.php", {
       method: "POST",
@@ -239,18 +278,34 @@ export default function Sign() {
       body: JSON.stringify({username: username})
     })
     const res = await fet.json();
-
     console.log(res)
-
     if (res.userId) {
       window.localStorage["userId"] = res.userId;
-    };
+      
+      if (signUp) {
+        if (await addUserToLevelsTableInDb(res.userId)) {
+          
+          if (await addUserToCostumeTableInDb(res.userId)) {
+            return true;
+          } else {
+            return false;
+          }
+          
+        } else {
+          
+          return false;
+        }
+      } else return true;
+
+    } else return false;
   } catch (e) {
-    console.log("error brother occured!")
+    console.log("error brother occured!" + e);
+    return false;
   }
 }
 
 async function addUser(username, password, email) {
+  console.log("addUser")
     try {
     const fet = await fetch("http://localhost/verant_apis/sign_up_api.php", {
       method: "POST",
@@ -263,8 +318,13 @@ async function addUser(username, password, email) {
     else if (res.status == 500) showError("Internal Server Error"); 
     else if (res.message === "added") {
       window.localStorage["token"] = token;
-      await getUserId(username)
-      window.location.reload()
+      if (await getUserId(username, true)) {
+            window.location.reload();
+          } else {
+        showError("error occured")
+      }
+      
+      
     };
   } catch (e) {
     console.log("error brother occured!")
@@ -281,9 +341,12 @@ async function signUser(username, password) {
     const res = await fet.json();
     if(res.message !== "valid login") showError("unvalid username or password");
     else if (res.message === "valid login") {
-      await getUserId(username)
-      window.localStorage["token"] = res.token;
-      window.location.reload()
+      if (await getUserId(username, false)) {
+        window.localStorage["token"] = res.token;
+        window.location.reload()
+      } else {
+        showError("error occured")
+      }
     };
   } catch (e) {
     console.error("error brother occured!");
