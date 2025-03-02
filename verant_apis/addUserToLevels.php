@@ -9,20 +9,16 @@ try {
     dieWithError("error connecting with database!",404 , $conn);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
+$pre = $conn->prepare("INSERT INTO levels (user_id, goal_level, current_xp, goal_xp) VALUES (?, 2, 0, 2000)");
+$pre->bind_param("i", $userId);
 
-$user_id = null;
+$username = null;
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn);
-} else {
-    $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
-}
-
+} 
 $conn->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "message" => "user added to levels table"]);

@@ -9,20 +9,20 @@ try {
     dieWithError("error connecting with database!",404 , $conn);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
+$pre = $conn->prepare("SELECT name FROM users WHERE id = ?");
+$pre->bind_param("i", $userId);
 
-$user_id = null;
+$username = null;
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn);
 } else {
     $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
+    $username = $res->fetch_assoc()["name"];
 }
 
 $conn->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "username" => $username]);

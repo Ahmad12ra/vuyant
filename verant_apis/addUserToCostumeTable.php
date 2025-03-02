@@ -9,20 +9,16 @@ try {
     dieWithError("error connecting with database!",404 , $conn);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
+$pre = $conn->prepare("INSERT INTO user_costume (user_id, user_skin_id, profile_pic, user_hat_id, user_glasses_id, user_cursor_id) VALUES (?, 1, null, null, null, 1)");
+$pre->bind_param("i", $userId);
 
-$user_id = null;
+$username = null;
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn);
-} else {
-    $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
-}
-
+} 
 $conn->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "message" => "user added to user_costume table"]);

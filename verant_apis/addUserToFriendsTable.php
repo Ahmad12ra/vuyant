@@ -9,20 +9,17 @@ try {
     dieWithError("error connecting with database!",404 , $conn);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
+$friend_id = $data["friendId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
+$pre = $conn->prepare("INSERT INTO friends (user_id, friend_id) VALUES (?, ?)");
+$pre->bind_param("ii", $userId, $friend_id);
 
-$user_id = null;
+$username = null;
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn);
-} else {
-    $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
-}
-
+} 
 $conn->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "message" => "user added to friends table"]);
