@@ -1,0 +1,1 @@
+db mysql Version: 10.4.32-MariaDB
