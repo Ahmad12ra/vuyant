@@ -3,6 +3,8 @@ import addCommaToNum from "../../addCommaToNum.js";
 import { useNavigate } from "react-router-dom";
 import "../css/challenges.css";
 import { UseContextValues } from "../../../App.js";
+import clickAudio from "../../click_audio_func/click_audio_func.js";
+import hoverAudio from "../../hover_audio_func/hover_audio_func.js";
 
 export default function Challenges() {
     let [innerProgWidth, setInnerPrgWidth] = useState();
@@ -32,9 +34,10 @@ export default function Challenges() {
                 <div>Lvl <span>{addCommaToNum(contextValues.userLevel)}</span></div>
                 <div>Lvl <span>{addCommaToNum(contextValues.userLevel + 1)}</span></div>
             </div>
-            <div className="challenges-clickable-main-container">
+            <div onClick={() => {clickAudio(); nav("/challenges")}} onMouseOver={() => hoverAudio()} className="challenges-clickable-main-container">
+                <div className="challenges-main-container-overlay"></div>
                 <div className="top-chllenges-button-trans"></div>
-                <span onClick={() => {nav("/challenges")}}>Challenges</span>
+                <span>Challenges</span>
             </div>
         </div>
     </>

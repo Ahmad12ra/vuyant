@@ -232,7 +232,23 @@ export default function Sign() {
   const token = new Date().getTime().toString(16);
 
 
+  async function addUserToVerantsTableInDb(userId, verantsCount) {
+    try {
+      const fet = await fetch("http://localhost/verant_apis/addUserToVerantsTable.php", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({userId: userId, verantsCount: verantsCount})
+      })
+      const res = await fet.json();
   
+      if (res.status === 200) {
+        return true
+      } else return false;
+    } catch (e) {
+      console.log("error brother occured!" + e);
+      return false;
+    }
+  }
 
   async function addUserToCostumeTableInDb(userId) {
     try {
@@ -278,7 +294,6 @@ export default function Sign() {
       body: JSON.stringify({username: username})
     })
     const res = await fet.json();
-    console.log(res)
     if (res.userId) {
       window.localStorage["userId"] = res.userId;
       
@@ -286,7 +301,11 @@ export default function Sign() {
         if (await addUserToLevelsTableInDb(res.userId)) {
           
           if (await addUserToCostumeTableInDb(res.userId)) {
-            return true;
+            if (await addUserToVerantsTableInDb(res.userId, 0)) {
+              return true
+            } else {
+              return false
+            }
           } else {
             return false;
           }

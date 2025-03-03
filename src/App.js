@@ -11,7 +11,6 @@ import SkinsPage from "./components/skin_page_comp/js/skin_page.js";
 import RankPage from "./components/rank_page_comp/js/rank.js";
 import VerantsPage from "./components/verants_page_comp/js/verants.js";
 import ChallengesPage from "./components/challenges_page_comp/js/challenges.js";
-
 export const UseContextValues = createContext();
 
 function App() {
@@ -23,12 +22,22 @@ function App() {
   let [goalXp, setGoalXp] = useState(2000);
   let [validUser, setValidUser] = useState({valid: false});
   let [availableToken, setAvailableToken] = useState(false);
+  let [updateVerantsCount, setUpdateVerantsCount] = useState(0);
+  let [userId, setUserId] = useState(null);
+  let [userVerantsAmount, setUserVerantsAmount] = useState("----")
 
   const newToken = new Date().getTime().toString(16);
 
   function updateToken() {
     window.localStorage.token = newToken;
   }
+
+
+  useEffect(() => {
+    if (userId !== null) {
+      getVerantsAmount(userId)
+    }
+  }, [updateVerantsCount,userId])
 
   useEffect(() => {
   if (validUser.valid) {
@@ -61,7 +70,25 @@ function App() {
 
   
   
+async function getVerantsAmount(userId) {
 
+  try {
+      const fet = await fetch("http://localhost/verant_apis/getVerantsAmount.php", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({userId: userId})
+      })
+      const res = await fet.json();
+      console.log(res)
+      if (res.verantsAmount >= 0) {
+        setUserVerantsAmount(res.verantsAmount)
+          return true;
+      } else return false;
+    } catch (e) {
+      console.log("error brother occured!" + e);
+      return false;
+    }
+} 
 
   // gets user name from his id
   async function getUserName(userId) {
@@ -107,6 +134,7 @@ function App() {
       if (res.message === "valid quick login") {
         setValidUser({valid: true, userId: userId});
         updateToken();
+        setUserId(userId);
         return true;
       } else return false;
     } catch (e) {
@@ -164,6 +192,10 @@ function App() {
     userLevel: userLevel,
     currentXp: currentXp,
     goalXp: goalXp,
+    userVerantsAmount: userVerantsAmount,
+    setUserId: setUserId,
+    setUpdateVerantsCount: setUpdateVerantsCount,
+    setUserVerantsAmount: setUserVerantsAmount,
    }
     
   

@@ -66,6 +66,7 @@
   justify-content: flex-start;
   align-items: start;
   height: 50px;
+  gap: 20px;
 }
 
 .progress-bar-main-container-part {
@@ -82,14 +83,13 @@
 }
 
 .progress-bar-part-rec-last {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+
 }
 
 .progress-bar-part-circle {
   background-color: #2d2d2d;
-  right: 0;
-  margin-right: 4px;
+  right: -20px;
+  z-index: 1;
 }
 
 .progress-bar-part-circle-first {
@@ -122,11 +122,11 @@
 }
 
 .level-part-number {
-  left: -20px;
+  right: 100%;
 }
 
 .last-level-part-number {
-  left: calc(100% - 28px);
+  left: 97%;
 }
 
 .top-layer-bottom-part-v-pass {
@@ -135,6 +135,7 @@
   align-items: center;
   margin-bottom: 20px;
   height: 105px;
+  gap: 20px;
 }
 
 .top-layer-prize-part {
@@ -151,7 +152,7 @@
   height: 100px;
   border-radius: 5px;
   position: absolute;
-  left: calc(100% - 14px);
+  left: calc(100% + 10px);
   transform: translateX(-50%);
   display: flex;
   justify-content: center;

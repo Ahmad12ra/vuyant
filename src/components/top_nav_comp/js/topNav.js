@@ -1,15 +1,18 @@
 import "../css/topNav.css";
 import { useNavigate } from "react-router-dom";
 import VerantsElement from "../../verants_comp/js/verants.js";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import hoverAudio from "../../hover_audio_func/hover_audio_func.js";
 import clickAudio from "../../click_audio_func/click_audio_func.js";
 import SideBar from "../../side_bar/js/side_bar.js";
+import { UseContextValues } from "../../../App.js";
 export default function TopNav(props) {
   const navHome = useNavigate();
   const topNavBurgerIcon = useRef(null);
   const topNavMainContainer = useRef(null);
   let [showSideBar, setShowSideBar] = useState(false);
+  let [sideBarTrans, setSidebarTrans] = useState("-100%");
+  const contextValues = useContext(UseContextValues);
 
   useEffect(() => {
     // topNavMainContainer.current.children.forEach((res) => {
@@ -35,6 +38,11 @@ export default function TopNav(props) {
       };
     });
   }, []);
+
+  function backShadowFunc() {
+    setSidebarTrans("-100%");
+    setTimeout(() => setShowSideBar(false),200)
+  }
 
   return (
     <div>
@@ -96,7 +104,7 @@ export default function TopNav(props) {
             <div className="home-element-verants-symbol">
               <VerantsElement scale="0.34" />
             </div>
-            <div className="verants-count">1,500</div>
+            <div className="verants-count">{contextValues.userVerantsAmount}</div>
           </div>
         </div>
         <div ref={topNavBurgerIcon} className="more-options-bars-icon">
@@ -112,11 +120,23 @@ export default function TopNav(props) {
           <i class="fa-solid fa-bars"></i>
         </div>
       </div>
-      
-        
-        {showSideBar ? <div onClick={() => setShowSideBar(false)} className="back-shadow-side-bar"></div> : null}
-        {showSideBar ? <div className="nav-sideBar"><SideBar /></div> : null}
-      
+
+        {(function () {
+          if (showSideBar) {
+            setTimeout(() => setSidebarTrans("0px"), 0)
+            return (
+              <>
+                <div
+                  onClick={() => {backShadowFunc()}}
+                  className="back-shadow-side-bar"
+                ></div>
+                <div style={{ right: sideBarTrans }} className="nav-sideBar">
+                  <SideBar />
+                </div>
+              </>
+            );
+          }
+        }())}
     </div>
   );
 }

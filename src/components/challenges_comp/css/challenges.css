@@ -35,10 +35,28 @@ background-color: var(--verants-main-color);
 
 .challenges-clickable-main-container {
   padding: 6px 10px;
-    font-weight: bold;
-    background-color: white;
-    color: black;
-    position: relative;
+  font-weight: bold;
+  outline: 1px solid white;
+  color: white;
+  position: relative;
+  border-radius: 7px;
+  transition: 0.2s;
+  position: relative;
+}
+
+.challenges-clickable-main-container:hover {
+  background-color: white;
+  color: black;
+  transition: 0s;
+}
+
+.challenges-main-container-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
 /* .top-chllenges-button-trans {

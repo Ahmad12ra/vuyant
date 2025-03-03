@@ -2,23 +2,63 @@ import { FirstCharacterCircle } from "../../characters_file/js/characters";
 import clickAudio from "../../click_audio_func/click_audio_func";
 import hoverAudio from "../../hover_audio_func/hover_audio_func";
 import TopNav from "../../top_nav_comp/js/topNav";
+import { UseContextValues } from "../../../App";
 import "../css/vPass.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useContext } from "react";
 export default function Vpass() {
+  const userInfo = useContext(UseContextValues);
   const bottomLayerVpass = useRef(null);
   const vPassPrizesMainContainer = useRef(null);
+  
+  function adjustProgress(levelNumber) {
+    if (levelNumber < userInfo.userLevel) {
+      return {
+          circleColor: "var(--verants-main-color)",
+          progress: "100%"
+      }
+    } else if (levelNumber === userInfo.userLevel) {
+      return {
+        circleColor: "#2d2d2d",
+        progress: `${(userInfo.currentXp / userInfo.goalXp) * 100}%`
+    }
+    }else {
+      return {
+        circleColor: "#2d2d2d",
+        progress: `0%`
+    }
+    }
+  }
+
+  console.log()
+
+
   function Repeat() {
     let result = [];
     for (let i = 1; i < 98; i++) {
       result.push(
         <div key={i} className="progress-bar-main-container-part">
-          <div className="progress-bar-part-rec"></div>
-          <div className="progress-bar-part-circle"></div>
+          <div style={{backgroundImage: `linear-gradient(to right, var(--verants-main-color) ${adjustProgress(i + 1).progress}, #80808027 0px)`}} className="progress-bar-part-rec"></div>
+          <div style={{backgroundColor: adjustProgress(i + 1).circleColor}} className="progress-bar-part-circle"></div>
           <div className="level-part-number">{i + 1}</div>
         </div>
       );
     }
-
+    result.unshift(
+      <div key={0} className="progress-bar-main-container-part">
+              <div style={{backgroundImage: `linear-gradient(to right, var(--verants-main-color) ${adjustProgress(1).progress}, #80808027 0px)`}} className="progress-bar-part-rec"></div>
+              <div style={{backgroundColor: adjustProgress(1).circleColor}} className="progress-bar-part-circle"></div>
+              <div className="progress-bar-part-circle-first"></div>
+              <div className="first-part-level-number">1</div>
+            </div>
+    )
+    result.push(
+<div key={100} className="progress-bar-main-container-part">
+              <div style={{backgroundImage: `linear-gradient(to right, var(--verants-main-color) ${adjustProgress(99).progress}, #80808027 0px)`}} className="progress-bar-part-rec progress-bar-part-rec-last"></div>
+              <div style={{backgroundColor: adjustProgress(99).circleColor}} className="progress-bar-part-circle"></div>
+              <div className="level-part-number">99</div>
+              <div className="last-level-part-number">100</div>
+            </div>
+    )
     return result;
   }
 
@@ -112,19 +152,9 @@ export default function Vpass() {
             </div>
           </div>
           <div className="bottom-layer-bottom-part-v-pass">
-            <div className="progress-bar-main-container-part">
-              <div className="progress-bar-part-rec"></div>
-              <div className="progress-bar-part-circle"></div>
-              <div className="progress-bar-part-circle-first"></div>
-              <div className="first-part-level-number">1</div>
-            </div>
+            
             <Repeat />
-            <div className="progress-bar-main-container-part">
-              <div className="progress-bar-part-rec progress-bar-part-rec-last"></div>
-              <div className="progress-bar-part-circle"></div>
-              <div className="level-part-number">99</div>
-              <div className="last-level-part-number">100</div>
-            </div>
+            
           </div>
         </div>
         <div  className="bottom-part-buy-v-pass-container">

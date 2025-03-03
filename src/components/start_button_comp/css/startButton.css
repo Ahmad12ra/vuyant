@@ -5,14 +5,26 @@
   transform: translate(-50%);
   width: 230px;
   height: 72px;
-  background-color: #b300fabd;
   display: flex;
+  z-index: 4;
+;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
+  background-color: var(--home-element-main-color);
+  outline: 1px solid var(--verants-main-color);
+  color: var(--verants-main-color);
+  transition: 0.2s;
+}
+
+.start-button-main-container:hover {
+  background-color: var(--verants-main-color);
+  color: white;
+  outline: none;
+  transition: 0s;
 }
 
 .start-button-inner-start-text {
-  color: white;
   font-weight: bold;
   font-size: 30px;
 }
@@ -32,4 +44,13 @@
 
 .start-button-inner-x-container span {
   transform: translateY(-4px);
+}
+
+.start-button-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
 }
