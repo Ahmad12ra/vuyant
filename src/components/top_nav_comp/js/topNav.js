@@ -6,6 +6,7 @@ import hoverAudio from "../../hover_audio_func/hover_audio_func.js";
 import clickAudio from "../../click_audio_func/click_audio_func.js";
 import SideBar from "../../side_bar/js/side_bar.js";
 import { UseContextValues } from "../../../App.js";
+import addCommaToNum from "../../addCommaToNum.js";
 export default function TopNav(props) {
   const navHome = useNavigate();
   const topNavBurgerIcon = useRef(null);
@@ -104,7 +105,7 @@ export default function TopNav(props) {
             <div className="home-element-verants-symbol">
               <VerantsElement scale="0.34" />
             </div>
-            <div className="verants-count">{contextValues.userVerantsAmount}</div>
+            <div className="verants-count">{addCommaToNum(contextValues.userVerantsAmount)}</div>
           </div>
         </div>
         <div ref={topNavBurgerIcon} className="more-options-bars-icon">

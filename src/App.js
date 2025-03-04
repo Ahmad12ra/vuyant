@@ -79,7 +79,6 @@ async function getVerantsAmount(userId) {
         body: JSON.stringify({userId: userId})
       })
       const res = await fet.json();
-      console.log(res)
       if (res.verantsAmount >= 0) {
         setUserVerantsAmount(res.verantsAmount)
           return true;
@@ -193,6 +192,7 @@ async function getVerantsAmount(userId) {
     currentXp: currentXp,
     goalXp: goalXp,
     userVerantsAmount: userVerantsAmount,
+    userId: userId,
     setUserId: setUserId,
     setUpdateVerantsCount: setUpdateVerantsCount,
     setUserVerantsAmount: setUserVerantsAmount,

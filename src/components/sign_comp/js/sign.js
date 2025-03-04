@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect, useMemo } from "react";
+import addCharacterToUserInDb from "../../addCharacterToUserInDb";
+import addCursorToUserInDb from "../../addCursorToUserInDb";
 import "../css/sign.css";
 
 export default function Sign() {
@@ -302,7 +304,16 @@ export default function Sign() {
           
           if (await addUserToCostumeTableInDb(res.userId)) {
             if (await addUserToVerantsTableInDb(res.userId, 0)) {
-              return true
+              if (await addCharacterToUserInDb(res.userId, 1)) {
+                if (await addCursorToUserInDb(res.userId, 1)) {
+                  return true;
+                } else {
+                  return false;
+                }
+              } else {
+                return false;
+              }
+              
             } else {
               return false
             }

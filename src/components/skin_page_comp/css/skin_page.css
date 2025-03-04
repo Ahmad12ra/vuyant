@@ -6,6 +6,9 @@
   background-color: var(--home-element-main-color);
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .skin-page-costume-main-container {
@@ -13,10 +16,6 @@
   height: 600px;
   padding: 0 40px;
   box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,5 +121,90 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  transform: scale(4)
+  transform: scale(4);
+}
+
+.bottom-part-skin-page-owned-items-main-container {
+  width: fit-content;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 80px;
+  margin: 0 auto;
+}
+
+.item-inside-owned-items-container {
+  width: 100px;
+  height: calc(100% - 4px);
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: var(--default-select-background-color);
+}
+
+.item-inside-owned-items-container-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.owned-items-scrollable-container-skins-page {
+  width: 100%;
+  overflow-x: scroll;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.bottom-part-owned-items-show-bar {
+  position: relative;
+  height: 94px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.go-left-skins-page-owned-items-main-container,
+.go-right-skins-page-owned-items-main-container {
+  position: absolute;
+  height: 100%;
+  width: 60px;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 0 10px 10px var(--home-element-main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999999;
+  font-size: 30px;
+  background-color: #101010;
+  transition: 0.2s;
+}
+
+.go-left-skins-page-owned-items-main-container:hover,
+.go-right-skins-page-owned-items-main-container:hover {
+  background-color: #393939;
+  color: white;
+  transition: 0s;
+}
+
+.go-left-skins-page-owned-items-main-container {
+  left: 0;
+}
+
+.go-right-skins-page-owned-items-main-container {
+  right: 0;
+}
+
+.owned-items-scrollable-container-skins-page::-webkit-scrollbar {
+  display: none;
 }
