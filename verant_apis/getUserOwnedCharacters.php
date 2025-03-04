@@ -2,6 +2,7 @@
 
 require_once "adjust_cors_permissions_&_take_request.php";
 require_once "dieWithError.php";
+require_once "getUserOwnedCharacterNamesFromCharacterIds.php";
 
 try {
     require "db_connection.php";
@@ -11,21 +12,20 @@ try {
 
 $userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT goal_level, current_xp, goal_xp FROM levels WHERE user_id = ?");
+$pre = $conn->prepare("SELECT character_id FROM user_owned_characters WHERE user_id = ?");
 $pre->bind_param("i", $userId);
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query", 404, $conn, $pre);
 }
 
-$lvl_res = $pre->get_result();
-$lvl_res = $lvl_res->fetch_assoc();
+$res = $pre->get_result();
+$array = [];
 
-$goal_level = $lvl_res["goal_level"];
-$current_xp = $lvl_res["current_xp"];
-$goal_xp = $lvl_res["goal_xp"];
-
+while ($fetched = $res->fetch_assoc()) {
+    $array[] = $fetched["character_id"];
+}
 $conn->close();
 $pre->close();
 
-echo json_encode(["status" => 200, "goalLevel" => $goal_level, "currentXp" => $current_xp, "goalXp" => $goal_xp]);
+getUserCharactersFromIds($array);

@@ -9,21 +9,16 @@ try {
     dieWithError("error connecting with database!",404 , $conn, 0);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
+$cursor_id = $data["cursorId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
-
-$user_id = null;
+$pre = $conn->prepare("INSERT INTO user_owned_cursors (user_id, cursor_id) VALUES (?, ?)");
+$pre->bind_param("ii", $userId, $cursor_id);
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn, $pre);
-} else {
-    $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
-}
-
+} 
 $conn->close();
 $pre->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "message" => "cursor added to the user"]);

@@ -15,7 +15,7 @@ $new_token = $data["newToken"];
 try {
     require "db_connection.php";
 } catch (e) {
-    dieWithError("connection to db failed", 404, $conn);
+    dieWithError("connection to db failed", 404, $conn, 0);
 }
 
 $pre = $conn->prepare("SELECT id, token FROM users WHERE id = ? AND token = ?");
@@ -38,10 +38,12 @@ if ($res->fetch_assoc()) {
     try {
         $pre->execute();
     } catch (Exception $e) {
-        dieWithError("failed to get result from the db", 404, $conn);
+        dieWithError("failed to get result from the db", 404, $conn, $pre);
     }
 
     echo json_encode(["status" => 200, "message" => "valid quick login"]);
+    $conn->close();
+    $pre->close();
 
 } else
-    dieWithError("unvalid quick login", 404, $conn);
+    dieWithError("unvalid quick login", 404, $conn, $pre);

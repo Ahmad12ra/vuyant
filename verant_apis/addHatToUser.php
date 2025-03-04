@@ -9,21 +9,16 @@ try {
     dieWithError("error connecting with database!",404 , $conn, 0);
 }
 
-$username = $data["username"];
+$userId = $data["userId"];
+$hat_id = $data["hatId"];
 
-$pre = $conn->prepare("SELECT id FROM users WHERE name = ?");
-$pre->bind_param("s", $username);
-
-$user_id = null;
+$pre = $conn->prepare("INSERT INTO user_owned_hats (user_id, hat_id) VALUES (?, ?)");
+$pre->bind_param("ii", $userId, $hat_id);
 
 if (!$pre->execute()) {
     dieWithError("failed to excute query",404 , $conn, $pre);
-} else {
-    $res = $pre->get_result();
-    $user_id = $res->fetch_assoc()["id"];
-}
-
+} 
 $conn->close();
 $pre->close();
 
-echo json_encode(["status" => 200, "userId" => $user_id]);
+echo json_encode(["status" => 200, "message" => "hat added to the user"]);

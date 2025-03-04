@@ -9,16 +9,18 @@ $password = filter_var($data["password"], FILTER_SANITIZE_ADD_SLASHES);
 try {
     require_once "db_connection.php";
 } catch (e) {
-    dieWithError("error connecting with database!", 404, $conn);
+    dieWithError("error connecting with database!", 404, $conn, 0);
 }
 $check = $conn->prepare("SELECT name, password, token FROM users WHERE name = ?");
 $check->bind_param("s", $name );
 if (!$check->execute()) {
     $conn->close();
+    $check->close();
 }
 $checkRes = $check->get_result();
 $result = $checkRes->fetch_assoc();
 $conn->close();
+$check->close();
 if (!$result) {
         echo json_encode(["status" => 404, "message" => "unvalid login"]);
 } else {

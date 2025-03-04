@@ -6,7 +6,7 @@ require_once "dieWithError.php";
 try {
     require "db_connection.php";
 } catch (Exception $e) {
-    dieWithError("error connecting with database!",404 , $conn);
+    dieWithError("error connecting with database!",404 , $conn, 0);
 }
 
 $userId = $data["userId"];
@@ -18,8 +18,9 @@ $pre->bind_param("ii", $userId, $verants_count);
 $username = null;
 
 if (!$pre->execute()) {
-    dieWithError("failed to excute query",404 , $conn);
+    dieWithError("failed to excute query",404 , $conn, $pre);
 } 
 $conn->close();
+$pre->close();
 
 echo json_encode(["status" => 200, "message" => "user added to friends table"]);
