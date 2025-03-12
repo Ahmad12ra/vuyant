@@ -1,8 +1,9 @@
 <?php
+require_once "adjust_cors_permissions_&_take_request.php";
+require_once "dieWithError.php";
 
+$characters_array = [];
 function getUserCharactersFromIds($arrayOfCharacterIds) {
-    require_once "adjust_cors_permissions_&_take_request.php";
-    require_once "dieWithError.php";
 
     try {
         require "db_connection.php";
@@ -10,7 +11,7 @@ function getUserCharactersFromIds($arrayOfCharacterIds) {
         dieWithError("error connecting with database!", 404, $conn, 0);
     }
 
-    $names_array = [];
+    
     foreach($arrayOfCharacterIds as $character_id) {
 
         $pre = $conn->prepare("SELECT skin_name FROM skins WHERE id = ?");
@@ -22,7 +23,7 @@ function getUserCharactersFromIds($arrayOfCharacterIds) {
 
         $res = $pre->get_result();
         $fetched = $res->fetch_assoc();
-        $names_array[] = $fetched["skin_name"];
+        $GLOBALS["characters_array"][] = $fetched["skin_name"];
         
 
     }
@@ -31,6 +32,5 @@ function getUserCharactersFromIds($arrayOfCharacterIds) {
     $conn->close();
     $pre->close();
 
-    echo json_encode(["status" => 200, "ownedCharacterNames" => $names_array]);
 
 }

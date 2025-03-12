@@ -2,7 +2,7 @@
 
 require_once "adjust_cors_permissions_&_take_request.php";
 require_once "dieWithError.php";
-require_once "getUserOwnedCharacterNamesFromCharacterIds.php";
+require_once "getUserOwnedCursorNamesFromCursorIds.php";
 
 try {
     require "db_connection.php";
@@ -12,7 +12,7 @@ try {
 
 $userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT character_id FROM user_owned_characters WHERE user_id = ?");
+$pre = $conn->prepare("SELECT cursor_id FROM user_owned_cursors WHERE user_id = ?");
 $pre->bind_param("i", $userId);
 
 if (!$pre->execute()) {
@@ -23,11 +23,11 @@ $res = $pre->get_result();
 $array = [];
 
 while ($fetched = $res->fetch_assoc()) {
-    $array[] = $fetched["character_id"];
+    $array[] = $fetched["cursor_id"];
 }
 $conn->close();
 $pre->close();
 
-getUserCharactersFromIds($array);
+getUserCursorFromIds($array);
 
-echo json_encode(["status" => 200, "message" => "user characters fetched", "ownedCharacterNames" => $characters_array]);
+echo json_encode(["status" => 200, "ownedCursorNames" => $cursors_array]);

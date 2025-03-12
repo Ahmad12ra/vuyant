@@ -2,7 +2,7 @@
 
 require_once "adjust_cors_permissions_&_take_request.php";
 require_once "dieWithError.php";
-require_once "getUserOwnedCharacterNamesFromCharacterIds.php";
+require_once "getUserOwnedHatNamesFromHatIds.php";
 
 try {
     require "db_connection.php";
@@ -12,22 +12,26 @@ try {
 
 $userId = $data["userId"];
 
-$pre = $conn->prepare("SELECT character_id FROM user_owned_characters WHERE user_id = ?");
+$pre = $conn->prepare("SELECT hat_id FROM user_owned_hats WHERE user_id = ?");
 $pre->bind_param("i", $userId);
 
 if (!$pre->execute()) {
-    dieWithError("failed to excute query", 404, $conn, $pre);
+    dieWithError("failed to excute query: getUserOwnedHats.php", 404, $conn, $pre);
 }
 
 $res = $pre->get_result();
 $array = [];
 
 while ($fetched = $res->fetch_assoc()) {
-    $array[] = $fetched["character_id"];
+    $array[] = $fetched["hat_id"];
 }
 $conn->close();
 $pre->close();
 
-getUserCharactersFromIds($array);
+if (count($array) > 0) {
 
-echo json_encode(["status" => 200, "message" => "user characters fetched", "ownedCharacterNames" => $characters_array]);
+    getUserHatFromIds($array);
+    echo json_encode(["status" => 200, "ownedHatNames" => $hats_array]);
+} else {
+    echo json_encode(["status" => 200, "ownedHatNames" => 1]);
+}
