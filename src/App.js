@@ -8,9 +8,12 @@ import "./css/all.css";
 import "./app.css";
 import Vpass from "./components/vPass_comp/js/vPass.js";
 import SkinsPage from "./components/skin_page_comp/js/skin_page.js";
+import updateUserState from "./components/updateUserState.js";
 import RankPage from "./components/rank_page_comp/js/rank.js";
+import getUserFriends from "./components/getUserFriends";
 import VerantsPage from "./components/verants_page_comp/js/verants.js";
 import ChallengesPage from "./components/challenges_page_comp/js/challenges.js";
+import { io } from "socket.io-client";
 export const UseContextValues = createContext();
 
 function App() {
@@ -23,15 +26,35 @@ function App() {
   let [validUser, setValidUser] = useState({valid: false});
   let [availableToken, setAvailableToken] = useState(false);
   let [updateVerantsCount, setUpdateVerantsCount] = useState(0);
+  let [connectToSocket, setConnectToSocket] = useState(0);
   let [userId, setUserId] = useState(null);
   let [userVerantsAmount, setUserVerantsAmount] = useState("----")
 
   const newToken = new Date().getTime().toString(16);
+  
+  useEffect(() => {
+    if (availableToken && userId && connectToSocket === 0) {
+      const socket = io("http://localhost:4000");
+      socket.emit("updateUserStatus", userId, 1);
+      socket.on("updateCheck", res => console.log(res));
+      socket.emit("userDetails", userId);
+      setConnectToSocket(1);
+    }
+  }, [availableToken, userId])
+
+  useEffect(() => {
+      if (userId) {
+    updateUserState(userId, 2);
+  }
+  }, [userId])
 
   function updateToken() {
     window.localStorage.token = newToken;
   }
 
+  useEffect(() => {
+    if (userId) getUserFriends(userId, ads => console.log(ads))
+  }, [userId])
 
   useEffect(() => {
     if (userId !== null) {
@@ -98,14 +121,18 @@ async function getVerantsAmount(userId) {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
-            userId: userId
+            userId: [userId],
+            autoUserId: 1
           }),
         }
       );
       const res = await fet.json();
-      if (res.username) 
-        setUsername(res.username);
+      console.log(res)
+      if (res.username) {
+        setUsername(res.username[0][0]);
+      }
     } catch (e) {
+      console.error("getUserNameFromId Error: " + e)
       return false;
     }
   }

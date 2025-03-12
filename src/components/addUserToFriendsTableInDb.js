@@ -7,8 +7,6 @@ export default async function addUserToFriendsTableInDb(userId, friendId) {
       })
       const res = await fet.json();
   
-      console.log(res)
-  
       if (res.status === 200) {
         return true
       } else return false;

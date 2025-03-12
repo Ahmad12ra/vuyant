@@ -8,6 +8,7 @@ import getUserOwnedCharacters from "../../getUserOwnedCharacters";
 import getUserOwnedCursors from "../../getUserOwnedCursors";
 import getUserOwnedHats from "../../getUserOwnedHats";
 import getUserOwnedGlasses from "../../getUserOwnedGlasses";
+import getUserCostume from "../../getUserCostume";
 import * as charactersFile from "../../characters_file/js/characters";
 import * as cursorsFile from "../../cursors_file/js/cursors";
 import * as hatsFile from "../../hats_file/js/hats";
@@ -19,6 +20,10 @@ export default function SkinsPage() {
   const userInfo = useContext(UseContextValues);
   const ownedItemsContainer = useRef(null);
   const ownedItemsScrollBar = useRef(null);
+  const [UserCharacter, setUserCharacter] = useState()
+  const [UserCursor, setUserCursor] = useState()
+  const [UserHat, setUserHat] = useState()
+  const [UserGlasses, setUserGlasses] = useState()
   let [ownedItems, setOwnedItems] = useState([]);
   function checkIfActive(e, func) {
     if (
@@ -31,6 +36,17 @@ export default function SkinsPage() {
       func();
     }
   }
+
+
+  // adjust the user current costume to show the current costume items in the boxes on the left
+  useEffect(() => {
+    getUserCostume(userInfo.userId, (userCostume) => {
+      setUserCharacter(() => charactersFile[userCostume.characterName[0]]);
+      setUserCursor(() => cursorsFile[userCostume.cursorName[0]]);
+      setUserHat(() => hatsFile[userCostume.hatName[0]]);
+      setUserGlasses(() => {return glassesFile[userCostume.glassesName[0]]});
+    })
+  }, [])
 
   // call back funciton
   function showUserOwnedCharacters(arrayOfCharacterNames) {
@@ -57,7 +73,7 @@ export default function SkinsPage() {
       setOwnedItems(<div style={{color: "#c9c9c9"}}>there is no owned glasses</div>);
     }
   }
-
+  // to show itmes in the down scroll in the skin page
   function ShowOwnedItems(fileType, arrayOfExtractedFiles, scaleAmount) {
     if (arrayOfExtractedFiles != null) {
       let returnedValue = [];
@@ -123,8 +139,9 @@ export default function SkinsPage() {
           >
             <div className="item-name-costume">Skin</div>
             <div className="item-element-costume">
-              <FirstCharacterCircle />
+              {UserCharacter ? <UserCharacter /> : ""}
             </div>
+            <div></div>
             <div className="over-lay-skin-owned-items"></div>
           </div>
           <div
@@ -137,8 +154,9 @@ export default function SkinsPage() {
           >
             <div className="item-name-costume">cursor</div>
             <div className="item-element-costume">
-              <FirstCursor />
+              {UserCursor ? <UserCursor /> : ""}
             </div>
+            <div></div>
             <div className="over-lay-skin-owned-items"></div>
           </div>
           <div
@@ -151,8 +169,9 @@ export default function SkinsPage() {
           >
             <div className="item-name-costume">hat</div>
             <div className="item-element-costume">
-              <FirstHat />
+              {UserHat ? <UserHat /> : ""}
             </div>
+            <div></div>
             <div className="over-lay-skin-owned-items"></div>
           </div>
           <div
@@ -165,8 +184,9 @@ export default function SkinsPage() {
           >
             <div className="item-name-costume">glasses</div>
             <div className="item-element-costume">
-              <FirstCharacterCircle />
+            {UserGlasses ? <UserGlasses /> : ""}
             </div>
+            <div></div>
             <div className="over-lay-skin-owned-items"></div>
           </div>
         </div>
