@@ -22,6 +22,7 @@ async function updateUserState(userId, newState) {
       }
     );
     const res = await fet.json();
+    console.log(res);
     if (res.status === 200) {
       return true;
     } else return false;
@@ -31,33 +32,39 @@ async function updateUserState(userId, newState) {
   }
 }
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
-
 let useresDetails = new Map();
+let rooms = [];
 
 io.on("connection", (socket) => {
-
-  socket.on("userDetails", userId => {
+  socket.on("userDetails", (userId) => {
     useresDetails.set(socket.id, userId);
+    console.log(useresDetails);
+  });
+
+  console.log("connected a user");
+
+  socket.on("updateUserStatus", (userId, newState) => {
+    updateUserState(userId, newState);
+    socket.emit(
+      "updateCheck",
+      `The user ${userId} status updated to ${newState} in the db table`
+    );
+  });
+
+  socket.on("disconnect", () => {
+    updateUserState(useresDetails.get(socket.id), 0);
+    useresDetails.delete(socket.id);
+    console.log(useresDetails);
+  });
+
+  socket.on("addUserToRoom", userId => {
+    rooms.push(userId);
+    console.log(rooms);
   })
-
-    console.log("connected a user")
-
-    socket.on("updateUserStatus", (userId, newState) => {
-        updateUserState(userId, newState);
-        socket.emit("updateCheck", `The user ${userId} status updated to ${newState} in the db table`);
-    });
-
-    socket.on("disconnect", () => {
-      updateUserState(useresDetails.get(socket.id), 0);
-      useresDetails.delete(socket.id);
-      console.log(useresDetails);
-    })
 
 });
 
-server.listen(4000, () => {
-  console.log("listening on *:3000");
+const port = 4000;
+server.listen(port, () => {
+  console.log("listening on *: " + port);
 });
