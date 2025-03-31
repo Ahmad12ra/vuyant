@@ -14,7 +14,7 @@ try {
 
 
 
-$pre = $conn->prepare("UPDATE user_status SET state = ? WHERE user_id = ?");
+$pre = $conn->prepare("UPDATE users_status SET status = ? WHERE user_id = ?");
 $pre->bind_param("ii", $newState, $userId);
 
 

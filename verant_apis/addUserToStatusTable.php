@@ -11,7 +11,7 @@ try {
 
 $userId = $data["userId"];
 
-$pre = $conn->prepare("INSERT INTO user_status (user_id) VALUES (?)");
+$pre = $conn->prepare("INSERT INTO users_status (user_id) VALUES (?)");
 $pre->bind_param("i", $userId);
 
 if (!$pre->execute()) {
