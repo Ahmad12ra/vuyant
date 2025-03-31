@@ -42,12 +42,6 @@ function App() {
     }
   }, [availableToken, userId])
 
-  useEffect(() => {
-      if (userId) {
-    updateUserState(userId, 2);
-  }
-  }, [userId])
-
   function updateToken() {
     window.localStorage.token = newToken;
   }

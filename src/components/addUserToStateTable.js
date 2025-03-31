@@ -11,7 +11,7 @@ export default async function addUserToStateTable(userId) {
           return true
         } else return false;
       } catch (e) {
-        console.log("error connecting to addUserToStatusTable: " + e);
+        console.error("error adding user to addUserToStatus Table: " + e);
         return false;
       }
 };
